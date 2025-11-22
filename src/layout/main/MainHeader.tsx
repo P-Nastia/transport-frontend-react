@@ -1,6 +1,6 @@
 import {Link} from "react-router";
 import {type RootState, useAppDispatch, useAppSelector} from "../../store";
-import {setTheme} from "../../store/themeSlice.ts";
+import {setTheme, type ThemeType} from "../../store/themeSlice.ts";
 import changeTheme from "../../utils/changeTheme.ts";
 
 export const MainHeader = () => {
@@ -9,7 +9,7 @@ export const MainHeader = () => {
     const theme = useAppSelector((state: RootState) => state.theme.theme);
     changeTheme(theme);
     const handleChangeTheme = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        dispatch(setTheme(e.target.value as any));
+        dispatch(setTheme(e.target.value as ThemeType));
     };
 
     return (
