@@ -13,18 +13,18 @@ const RegisterPage: React.FC = () => {
         confirmPassword: "",
     });
 
-    const [message, setMessage] = useState(null);
-    const [error, setError] = useState(null);
+    const [message, setMessage] = useState<string|null>(null);
+    const [error, setError] = useState<string|null>(null);
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (form.password !== form.confirmPassword) {
-            // @ts-ignore
+
             setError("Passwords do not match");
             return;
         }
@@ -39,10 +39,8 @@ const RegisterPage: React.FC = () => {
             //     password: form.password,
             // }).unwrap();
 
-            // @ts-ignore
             setMessage("Registered successfully!");
-        } catch (err) {
-            // @ts-ignore
+        } catch {
             setError("Registration failed");
         }
     };
