@@ -1,6 +1,6 @@
 export const MainFooter = () => {
     return (
-        <footer className="bg-neutral-primary dark:bg-gray-900  mt-10">
+        <footer className="bg-neutral-primary mt-10">
             <div className="max-w-screen-xxl mx-auto p-4">
                 <p className="text-center text-heading text-sm">
                     © 2025. Всі права захищено.

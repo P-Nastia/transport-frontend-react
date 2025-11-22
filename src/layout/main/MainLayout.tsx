@@ -4,7 +4,7 @@ import MainFooter from "./MainFooter.tsx";
 
 export const MainLayout = () => {
     return (
-        <div>
+        <div className={" bg-[var(--bg)] text-[var(--fg)]"}>
             <MainHeader />
 
             <main>
