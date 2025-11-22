@@ -7,9 +7,12 @@ export const MainLayout = () => {
         <div className={" bg-[var(--bg)] text-[var(--fg)]"}>
             <MainHeader />
 
-            <main>
-                <Outlet />
+            <main className="py-5 transition-colors">
+                <div className="container mx-auto">
+                    <Outlet />
+                </div>
             </main>
+
 
             <MainFooter />
         </div>
