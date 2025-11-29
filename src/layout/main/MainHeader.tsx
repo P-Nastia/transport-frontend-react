@@ -65,6 +65,11 @@ export const MainHeader = () => {
                                       className="block py-2 px-3 bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0"
                                       aria-current="page">Add country</Link>
                             </li>
+                            <li>
+                                <Link to={"/cities/create"}
+                                      className="block py-2 px-3 bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0"
+                                      aria-current="page">Add city</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>

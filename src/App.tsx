@@ -4,7 +4,8 @@ import MainLayout from "./layout/main/MainLayout.tsx";
 import NotFoundPage from "./pages/common/NotFoundPage.tsx";
 import UserHomePage from "./pages/user/userHomePage";
 import RegisterPage from "./pages/account/registerPage";
-import CreateCountryPage from "./pages/country/createCountryPage";
+import CreateCountryPage from "./pages/country/create";
+import CreateCityPage from "./pages/city/create";
 
 function App() {
 
@@ -15,6 +16,10 @@ function App() {
                     <Route index element={<UserHomePage/>} />
                     <Route path={"/register"} element={<RegisterPage/>} />
                     <Route path={"/countries/create"} element={<CreateCountryPage/>} />
+
+                    <Route path="cities">
+                        <Route path="create" element={<CreateCityPage />} />
+                    </Route>
                 </Route>
 
                 <Route path="*" element={<NotFoundPage/>} />
