@@ -8,4 +8,5 @@ export interface ICityItem {
     timezone?: string;
     description?: string;
     dateCreated?: string;
+    population?: number;
 }

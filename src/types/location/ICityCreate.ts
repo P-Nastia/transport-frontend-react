@@ -5,4 +5,6 @@ export interface ICityCreate {
     countryId: number;
     timezone?: string;
     description?: string;
+    population?: number;
+    descriptionImageIds: number[]
 }
