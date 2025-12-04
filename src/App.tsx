@@ -6,6 +6,8 @@ import UserHomePage from "./pages/user/userHomePage";
 import RegisterPage from "./pages/account/registerPage";
 import CreateCountryPage from "./pages/country/create";
 import CreateCityPage from "./pages/city/create";
+import CitiesPage from "./pages/city/list";
+import CityDetailPage from "./pages/city/item";
 
 function App() {
 
@@ -19,6 +21,8 @@ function App() {
 
                     <Route path="cities">
                         <Route path="create" element={<CreateCityPage />} />
+                        <Route index element={<CitiesPage/>} />
+                        <Route path=":slug" element={<CityDetailPage/>} />
                     </Route>
                 </Route>
 
