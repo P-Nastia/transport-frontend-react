@@ -60,7 +60,8 @@ const CreateCityForm: React.FC = () => {
         try {
             await createCity({ ...formValues, image: file }).unwrap();
             navigate("/");
-        } catch (err: any) {
+        }
+        catch (err: any) {
             setFormError(err?.data?.message || "Помилка створення міста");
         }
     };
@@ -114,7 +115,6 @@ const CreateCityForm: React.FC = () => {
 
             <SelectField
                 label="Країна"
-                name="countryId"
                 options={countryOptions}
                 value={formValues.countryId}
                 onChange={(v) => setFormValues((p) => ({ ...p, countryId: Number(v) }))}

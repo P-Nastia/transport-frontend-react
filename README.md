@@ -90,3 +90,16 @@ export default defineConfig({
 })
 
 ```
+
+## Збірка проєкту
+```
+docker build -t p22-java-front .
+docker run -d --restart=always -p 6892:8081 --name p22-java_container_front p22-java-front
+docker login
+docker tag p22-java-front:latest nastiapyv/p22-java-front:latest
+docker push nastiapyv/p22-java-front:latest
+
+dos2unix java-p22-front.sh
+chmod +x java-p22-front.sh
+./java-p22-front.sh
+```

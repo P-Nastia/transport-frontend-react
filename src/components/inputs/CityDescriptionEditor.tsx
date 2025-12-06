@@ -79,39 +79,43 @@ const CityDescriptionEditor: React.FC<Props> = ({
                 images_file_types: "jpg,jpeg,png,webp",
                 paste_data_images: false,
 
+                //@ts-ignore
                 setup: (editor) => {
+
+                    //@ts-ignore
                     editor.on("Paste", async (e) => {
-                        const items = e.clipboardData?.items;
-                        if (!items) return;
                         e.preventDefault();
 
-                        for (const item of items) {
-                            console.log("item", item);
-                            if(item.kind !== "file") {
-                                item.getAsString(async (s) => {
-                                    console.log("RAW HTML:", s);
-                                    const temp = document.createElement("div");
-                                    temp.innerHTML = s;
+                        const clipboardData = e.clipboardData || e.originalEvent?.clipboardData;
+                        if (!clipboardData) return;
 
-                                    const imgs = temp.querySelectorAll("img");
+                        const html = clipboardData.getData("text/html");
+                        const text = clipboardData.getData("text/plain");
 
-                                    for (const img of imgs) {
-                                        const src = img.getAttribute("src");
-                                        if (!src || src.startsWith(APP_ENV.IMAGE_BASE_URL)) continue;
+                        const contentToInsert = html || text;
+                        if (!contentToInsert) return;
 
-                                        console.log("FOUND IMG:", src);
+                        const temp = document.createElement("div");
+                        temp.innerHTML = contentToInsert;
 
-                                        const { url } = await uploadImage(src);
+                        const imgs = Array.from(temp.querySelectorAll("img"));
 
-                                        img.setAttribute("src", url);
-                                    }
+                        for (const img of imgs) {
+                            const src = img.getAttribute("src");
+                            if (!src || src.startsWith(APP_ENV.IMAGE_BASE_URL)) continue;
 
-                                    editor.insertContent(temp.innerHTML);
-                                });
+                            try {
+                                const { url } = await uploadImage(src);
+                                img.setAttribute("src", url);
+                            } catch (err) {
+                                console.error("Failed to upload image:", err);
                             }
                         }
+
+                        editor.insertContent(temp.innerHTML);
                     });
 
+                    //@ts-ignore
                     editor.on("NodeChange", async (e) => {
                         const node = e.element;
 
@@ -143,6 +147,7 @@ const CityDescriptionEditor: React.FC<Props> = ({
                     });
                 },
 
+                //@ts-ignore
                 images_upload_handler: async (blobInfo) => {
                     const file = blobInfo.blob();
                     const { url } = await uploadImage(file);
